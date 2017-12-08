@@ -1,0 +1,96 @@
+# depslib dependency file v1.0
+1512508791 source:d:\praca\praca semestr i\code block\projekt_nr_3\main.cpp
+	"main.h"
+
+1512508819 d:\praca\praca semestr i\code block\projekt_nr_3\main.h
+	<string>
+	<ctime>
+	<stdlib.h>
+	<stdio.h>
+	"utilities.h"
+	"GUI.h"
+
+1512492329 d:\praca\praca semestr i\code block\projekt_nr_3\utilities.h
+	"main.h"
+	<iostream>
+	<fstream>
+	<string>
+	<stdlib.h>
+	<cstring>
+
+1512493674 source:d:\praca\praca semestr i\code block\projekt_nr_3\utilities.cpp
+	"utilities.h"
+
+1512481948 d:\praca\praca semestr i\code block\projekt_nr_3\generalinclude.h
+	<iostream>
+	<fstream>
+	<string>
+
+1512494458 d:\praca\praca semestr i\code block\projekt_nr_3\question.h
+	"main.h"
+
+1512508821 d:\praca\praca semestr i\code block\projekt_nr_3\include\gui.h
+
+1512508888 source:d:\praca\praca semestr i\code block\projekt_nr_3\src\gui.cpp
+	"GUI.h"
+	"main.h"
+
+1512660571 d:\praca\praca semestr i\code block\projekt_nr_3\include\main.h
+	<string>
+	<ctime>
+	<stdlib.h>
+	<stdio.h>
+	"utilities.h"
+	"UI.h"
+
+1512492329 d:\praca\praca semestr i\code block\projekt_nr_3\include\utilities.h
+	"main.h"
+	<iostream>
+	<fstream>
+	<string>
+	<stdlib.h>
+	<cstring>
+
+1512509159 source:d:\praca\praca semestr i\code block\projekt_nr_3\src\main.cpp
+	"main.h"
+
+1512493674 source:d:\praca\praca semestr i\code block\projekt_nr_3\src\utilities.cpp
+	"utilities.h"
+
+1512508821 d:\praca\praca semestr i\code block\projekt_nr_3\include\ui.h
+
+1512771894 source:e:\projekt_nr_3\src\main.cpp
+	"main.h"
+
+1512771700 e:\projekt_nr_3\include\main.h
+	<string>
+	<ctime>
+	<stdlib.h>
+	<stdio.h>
+	"utilities.h"
+	"UI.h"
+	"Stack.h"
+
+1512492329 e:\projekt_nr_3\include\utilities.h
+	"main.h"
+	<iostream>
+	<fstream>
+	<string>
+	<stdlib.h>
+	<cstring>
+
+1512508821 e:\projekt_nr_3\include\ui.h
+
+1512771977 source:e:\projekt_nr_3\src\utilities.cpp
+	"utilities.h"
+
+1512769526 source:e:\projekt_nr_3\src\stack.cpp
+	"Stack.h"
+
+1512769355 e:\projekt_nr_3\include\stack.h
+	<iostream>
+
+1512767980 source:e:\projekt_nr_3\src\ui.cpp
+	"UI.h"
+	"main.h"
+
