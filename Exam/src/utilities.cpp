@@ -64,7 +64,6 @@ void generateQuestionbinaryFile(const char* fileDir){
                     break;
            };
             if(i == 5){
-                //cout << q.questionText << endl<<q.qA[0].answer<<endl << q.correctAnswer << endl<<endl;
 
                 of.write(q.questionText, sizeof(q.questionText));
                 for(int j = 0 ; j < 3; j++){

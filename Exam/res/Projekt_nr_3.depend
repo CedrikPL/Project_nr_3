@@ -94,35 +94,3 @@
 	"UI.h"
 	"main.h"
 
-1512769526 source:f:\@github\uph\project_nr_3\exam\src\stack.cpp
-	"Stack.h"
-
-1512769355 f:\@github\uph\project_nr_3\exam\include\stack.h
-	<iostream>
-
-1512767980 source:f:\@github\uph\project_nr_3\exam\src\ui.cpp
-	"UI.h"
-	"main.h"
-
-1512508821 f:\@github\uph\project_nr_3\exam\include\ui.h
-
-1512772918 f:\@github\uph\project_nr_3\exam\include\main.h
-	<string>
-	<ctime>
-	<stdlib.h>
-	<stdio.h>
-	"utilities.h"
-	"UI.h"
-	"Stack.h"
-
-1512492329 f:\@github\uph\project_nr_3\exam\include\utilities.h
-	"main.h"
-	<iostream>
-	<fstream>
-	<string>
-	<stdlib.h>
-	<cstring>
-
-1512771977 source:f:\@github\uph\project_nr_3\exam\src\utilities.cpp
-	"utilities.h"
-

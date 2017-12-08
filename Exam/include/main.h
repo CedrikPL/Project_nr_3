@@ -17,8 +17,8 @@
 
 using namespace std;
 
-const char QuestionFileName[] = "Questions.pq";
-const char UserFileName[] = "User.ed";
+const char QuestionFileName[] = "res/Questions.pq";
+const char UserFileName[] = "res/User.ed";
 const char TempFileName[] = "pq.tmp";
 
 struct questionAnswers{
