@@ -127,7 +127,7 @@ void generateQuestionbinaryFile(const char* fileDir)
 
 string toLowerCase(string text)
 {
-    int i = 0;
+    unsigned int i = 0;
     char c;
     while ( i < text.length())
     {

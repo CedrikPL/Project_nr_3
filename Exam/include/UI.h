@@ -6,6 +6,7 @@
 #include "Question.h"
 #include "Stack.h"
 #include "utilities.h"
+#include "Exam.h"
 
 void mainScreen();
 

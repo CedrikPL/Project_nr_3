@@ -2,6 +2,10 @@
 #define USER_H_INCLUDED
 
 #include <string>
+#include <iostream>
+#include <fstream>
+#include <stdlib.h>
+#include <sstream>
 
 using namespace std;
 
@@ -9,24 +13,14 @@ const char UserFileName[] = "res/User.ed";
 
 const char undefinedUser = '~';
 
-const int QuestionInExam = 20;
-
-struct Date{
-    int d,mm,rrrr;
-};
-
-struct Exam{
-    Date examDate;
-    int totalScore;
-};
-
 struct User{
     string userName;
+    string lastExamID;
     int examCnt;
 };
 
-User login(string userName);
-
 User createUser(string userName);
+
+User userExist(string userName);
 
 #endif

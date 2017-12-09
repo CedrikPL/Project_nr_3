@@ -8,7 +8,7 @@ void mainScreen()
     do
     {
         system("cls");
-        cout << "Welcome to the English language exam program!\nChoose one of the options below to start.\n\n1 - Login; 2 - Create user; 4 -DEBUG TEST; 3 - Exit\nSelect option: ";
+        cout << "Welcome to the English language exam program!\nChoose one of the options below to start.\n\n1 - Login; 2 - Create user; 3 -Quick Exam; 4 - Exit\nSelect option: ";
         cin.sync();
         s = getchar();
 
@@ -21,16 +21,12 @@ void mainScreen()
             createUserStage();
             break;
         case '3':
-            break;
-        case '4':
             examStage();
             break;
-        default:
-            cout << "Incorrect value!\n";
         }
 
     }
-    while(s != '3');
+    while(s != '4');
 }
 
 void loginStage()
@@ -38,14 +34,15 @@ void loginStage()
 
     system("cls");
     string userName;
-    cout << "To start using program, type your username for which you want to take the exam.\nEnter your username: ";
+    cout << "To start using program, type your 'username' for which you want to take the exam.\nEnter your username: ";
     cin.sync();
     getline(cin, userName);
 
-    User user = login(userName);
+    User user = userExist(userName);
     if(user.userName.at(0) == undefinedUser)
     {
-
+        cout << "Dont't exist!";
+        createUser(userName);
     }
 
 
@@ -53,7 +50,18 @@ void loginStage()
 
 void  createUserStage()
 {
+    system("cls");
+    string userName;
+    cout << "To create user and start using program, type your 'username' for which you want to take the exam.\nEnter your username: ";
+    cin.sync();
+    getline(cin, userName);
 
+    User user = userExist(userName);
+    if(user.userName.at(0) == undefinedUser)
+    {
+        cout << "Dont't exist!";
+        createUser(userName);
+    }
 }
 
 void examStage()
