@@ -9,6 +9,8 @@
 
 using namespace std;
 
+const char QuestionFileName[] = "res/Questions.pq";
+
 struct Question{
     string questionText;
     string questionAnswers[3];
