@@ -7,6 +7,8 @@
 
 using namespace std;
 
+const int QUESTION_IN_FILE = 40;
+
 struct NumberStack{
     int number;
     NumberStack *next;

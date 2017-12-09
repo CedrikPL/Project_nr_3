@@ -3,20 +3,19 @@
 
 #include <iostream>
 #include <fstream>
+#include <cmath>
+#include <cstring>
+#include <stdlib.h>
 
 using namespace std;
 
-struct questionAnswers{
-    char answer[20];
-};
-
 struct Question{
-    char questionText[80];
-    questionAnswers qA[3];
-    unsigned short correctAnswer;
+    string questionText;
+    string questionAnswers[3];
+    char correctAnswer;
 };
 
-Question readQuestionFromFile(const char* fileDir, int questionOffset);
+Question readQuestionFromFile(const char* fileDir, int questionIndex);
 
 void displayQuestion(Question q);
 
