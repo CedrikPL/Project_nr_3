@@ -4,7 +4,7 @@ int main()
 {
     srand( time(0));
 
-    NumberStack *root = generateUniqueNumber(10);
+    NumberStack *root = generateUniqueNumber(QUESTION_IN_FILE);
     NumberStack *w;
 
     w = root;
@@ -12,7 +12,7 @@ int main()
     Question q;
     int t;
     while(root){
-            t = popStack(&root);
+        t = popStack(&root);
         cout << t <<"\n";
         q = readQuestionFromFile(QuestionFileName , t);
 
@@ -22,6 +22,13 @@ int main()
     root = w;
 
     clearStack(&root);
+
+   // generateQuestionbinaryFile("res/test.txt");
+
+  // displayQuestion(readQuestionFromFile(QuestionFileName, 1));
+
+
+//        displayQuestion(readQuestionFromFile(QuestionFileName , 28));
 
     return 0;
 }

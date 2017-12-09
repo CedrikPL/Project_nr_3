@@ -48,28 +48,28 @@ void generateQuestionbinaryFile(const char* fileDir){
         {  i++;
            switch(i){
                 case 1:
-                    strncpy(q.questionText, line.c_str(), sizeof(q.questionText));
+                    q.questionText = line;
                 break;
                 case 2:
-                    strncpy( q.qA[0].answer, line.c_str(), sizeof(q.qA[0].answer));
+                    q.questionAnswers[0] = line;
                     break;
                 case 3:
-                    strncpy( q.qA[1].answer, line.c_str(), sizeof(q.qA[1].answer));
+                     q.questionAnswers[1] = line;
                     break;
                 case 4:
-                    strncpy( q.qA[2].answer, line.c_str(), sizeof(q.qA[2].answer));
+                     q.questionAnswers[2] = line;
                     break;
                 case 5:
-                    q.correctAnswer = atoi(line.c_str());
+                    q.correctAnswer = line.at(0);
                     break;
            };
             if(i == 5){
 
-                of.write(q.questionText, sizeof(q.questionText));
-                for(int j = 0 ; j < 3; j++){
-                    of.write(q.qA[j].answer, sizeof(q.qA[j].answer));
+                of << q.questionText << "\n";
+                for(int j = 0; j < 3;j++){
+                    of << q.questionAnswers[j] << "\n";
                 }
-                of.write(reinterpret_cast<char *>(&q.correctAnswer), sizeof(q.correctAnswer));
+                of << q.correctAnswer<<"\n";
 
                 i = 0;
             }

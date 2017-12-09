@@ -36,7 +36,7 @@ NumberStack* generateUniqueNumber(int n)
     bool isUnique = true;
     while(i < n)
     {
-        r = ( rand() % 50 ) + 1;
+        r = ( rand() % QUESTION_IN_FILE ) + 1;
         tempW = root; // save current stack pointer;
         while(root) // until root = NULL
         {
