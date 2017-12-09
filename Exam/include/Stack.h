@@ -2,6 +2,8 @@
 #define Stack_H_INCLUDED
 
 #include <iostream>
+#include <ctime>
+#include <stdlib.h>
 
 using namespace std;
 
@@ -17,4 +19,8 @@ void pushStack(NumberStack **root, int wartosc);
 int popStack(NumberStack **root);
 
 void clearStack(NumberStack **root);
+
+
+NumberStack* generateUniqueNumber(int n);
+
 #endif

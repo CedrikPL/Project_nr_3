@@ -1,7 +1,7 @@
 #include "Question.h"
 
 
-Question readQuestionFromFile(int questionOffset)
+Question readQuestionFromFile(const char* fileDir, int questionOffset)
 {
     Question q;
 
@@ -10,7 +10,7 @@ Question readQuestionFromFile(int questionOffset)
         questionOffset *= sizeof(q.questionText) + (3 * sizeof(q.qA[0].answer)) + sizeof(q.correctAnswer);
     }
 
-    ifstream myfile(QuestionFileName,  ios::binary);
+    ifstream myfile(fileDir,  ios::binary);
     myfile.seekg(questionOffset);
 
     myfile.read(q.questionText, sizeof(q.questionText));

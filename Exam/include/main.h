@@ -8,6 +8,7 @@
 #include "utilities.h"
 #include "UI.h"
 #include "Stack.h"
+#include "Question.h"
 
 /*Napisz program, który umo¿liwi przeprowadzenie testu wyboru z „Jêzyka angielskiego”.
  Pytania i odpowiedzi podane s¹ w pliku binarnym. W teœcie jest 20 pytañ losowanych z puli 100 pytañ.
@@ -20,16 +21,6 @@ using namespace std;
 const char QuestionFileName[] = "res/Questions.pq";
 const char UserFileName[] = "res/User.ed";
 const char TempFileName[] = "pq.tmp";
-
-struct questionAnswers{
-    char answer[20];
-};
-
-struct Question{
-    char questionText[80];
-    questionAnswers qA[3];
-    unsigned short correctAnswer;
-};
 
 struct Date{
     int d,mm,rrrr;
@@ -44,12 +35,6 @@ struct User{
     char userName[30];
     int examCnt;
 };
-
-Question readQuestionFromFile(int questionOffset);
-
-void displayQuestion(Question q);
-
-NumberStack* generateUniqueNumber(int n);
 
 int main();
 
