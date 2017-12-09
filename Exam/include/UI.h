@@ -1,6 +1,7 @@
 #ifndef UI_H
 #define UI_H
 
+#include <conio.h>
 
 #include "User.h"
 #include "Question.h"

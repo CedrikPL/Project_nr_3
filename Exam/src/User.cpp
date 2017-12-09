@@ -3,13 +3,10 @@
 User createUser(string userName)
 {
     User u;
-    stringstream ss;
+
     u.userName = userName;
     u.examCnt = 0;
-
-    ss << userName << "-" << u.examCnt;
-
-    ss >> u.lastExamID;
+    u.lastExamID = userName;
 
     ofstream of;
     of.open (UserFileName, ios::out | ios::app | ios::binary);

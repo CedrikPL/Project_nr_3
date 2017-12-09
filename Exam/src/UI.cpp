@@ -1,29 +1,59 @@
 #include "UI.h"
 
+User currentUser;
+string toUpperUsername;
 
 void mainScreen()
 {
+    currentUser.userName = undefinedUser;
 
     char s;
     do
     {
         system("cls");
-        cout << "Welcome to the English language exam program!\nChoose one of the options below to start.\n\n1 - Login; 2 - Create user; 3 -Quick Exam; 4 - Exit\nSelect option: ";
-        cin.sync();
-        s = getchar();
 
-        switch(s)
+        if(currentUser.userName.at(0) != undefinedUser)
         {
-        case '1':
-            loginStage();
-            break;
-        case '2':
-            createUserStage();
-            break;
-        case '3':
-            examStage();
-            break;
+            toUpperUsername = currentUser.userName;
+            toUpperUsername.at(0) = toupper(toUpperUsername.at(0));
+            cout << "Welcome " << toUpperUsername << "! into the English language exam program!\nChoose one of the options below to start.\n\n1 - logout; 2 - Exam; 3 - Detail; 4 - Exit\nSelect option: ";
+            cin.sync();
+            s = getchar();
+
+            switch(s)
+            {
+            case '1':
+
+                break;
+            case '2':
+
+                break;
+            case '3':
+
+                break;
+            }
         }
+        else
+        {
+            cout << "Welcome to the English language exam program!\nChoose one of the options below to start.\n\n1 - Login; 2 - Create user; 3 -Quick Exam; 4 - Exit\nSelect option: ";
+            cin.sync();
+            s = getchar();
+
+            switch(s)
+            {
+            case '1':
+                loginStage();
+                break;
+            case '2':
+                createUserStage();
+                break;
+            case '3':
+                examStage();
+                break;
+            }
+
+        }
+
 
     }
     while(s != '4');
@@ -31,7 +61,6 @@ void mainScreen()
 
 void loginStage()
 {
-
     system("cls");
     string userName;
     cout << "To start using program, type your 'username' for which you want to take the exam.\nEnter your username: ";
@@ -41,11 +70,25 @@ void loginStage()
     User user = userExist(userName);
     if(user.userName.at(0) == undefinedUser)
     {
-        cout << "Dont't exist!";
-        createUser(userName);
+        char s;
+        cout << "User: " << userName << " don't exist! Do you want to create new user? (Y/N): ";
+        cin >> s;
+        s = tolower(s);
+        if( s == 'y')
+        {
+            currentUser = createUser(userName);
+            cout << "User " << userName << " created successfully!\n Press any key to continue...";
+            getch();
+        }
     }
-
-
+    else
+    {
+        userName.at(0) = toupper(userName.at(0));
+        cout << userName <<" user logged successfully!";
+        currentUser = user;
+        cout << "\n Press any key to continue...";
+        getch();
+    }
 }
 
 void  createUserStage()
@@ -59,8 +102,19 @@ void  createUserStage()
     User user = userExist(userName);
     if(user.userName.at(0) == undefinedUser)
     {
-        cout << "Dont't exist!";
-        createUser(userName);
+        char s;
+        cout << "User: " << userName << " don't exist! Do you want to create new user? (Y/N): ";
+        cin >> s;
+        s = tolower(s);
+        if( s == 'y')
+        {
+            currentUser = createUser(userName);
+            cout << "User " << userName << " created and auto login successfully!\n Press any key to continue...";
+            getch();
+        }
+    }else{
+        cout << "User: " << userName << " exist! You can't create user witch same 'username'!\n Press any key to continue...";
+        getch();
     }
 }
 
@@ -115,7 +169,8 @@ void examStage()
                 cout << "Incorrect answer! Type 'help' for more information!\n";
             }
 
-            if(goToNext){
+            if(goToNext)
+            {
                 if(answer.at(0) != question.correctAnswer)
                     badQuestion++;
             }
