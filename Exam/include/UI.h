@@ -2,6 +2,7 @@
 #define UI_H
 
 #include <conio.h>
+#include <sstream>
 
 #include "User.h"
 #include "Question.h"
@@ -15,9 +16,11 @@ void loginStage();
 
 void createUserStage();
 
-void quickExamStage();
+void preExamStage();
 
-void examStage();
+void examDetaiStage();
+
+void exam();
 
 void logoutStage();
 

@@ -24,4 +24,6 @@ User createUser(string userName);
 
 User userExist(string userName);
 
+void updateUser(User user);
+
 #endif

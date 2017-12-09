@@ -102,11 +102,12 @@
 	<ctime>
 	<stdlib.h>
 
-1512848959 source:f:\@github\uph\project_nr_3\exam\src\ui.cpp
+1512850770 source:f:\@github\uph\project_nr_3\exam\src\ui.cpp
 	"UI.h"
 
-1512847692 f:\@github\uph\project_nr_3\exam\include\ui.h
+1512849861 f:\@github\uph\project_nr_3\exam\include\ui.h
 	<conio.h>
+	<sstream>
 	"User.h"
 	"Question.h"
 	"Stack.h"
@@ -150,10 +151,10 @@
 1512839515 source:f:\@github\uph\project_nr_3\exam\src\question.cpp
 	"Question.h"
 
-1512848892 source:f:\@github\uph\project_nr_3\exam\src\user.cpp
+1512855290 source:f:\@github\uph\project_nr_3\exam\src\user.cpp
 	"User.h"
 
-1512848850 f:\@github\uph\project_nr_3\exam\include\user.h
+1512854080 f:\@github\uph\project_nr_3\exam\include\user.h
 	<string>
 	<iostream>
 	<fstream>

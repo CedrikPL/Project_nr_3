@@ -26,10 +26,10 @@ void mainScreen()
                 logoutStage();
                 break;
             case '2':
-                examStage();
+                preExamStage();
                 break;
             case '3':
-
+                examDetaiStage();
                 break;
             }
         }
@@ -48,7 +48,7 @@ void mainScreen()
                 createUserStage();
                 break;
             case '3':
-                quickExamStage();
+                exam();
                 break;
             }
 
@@ -59,7 +59,112 @@ void mainScreen()
     while(s != '4');
 }
 
-void examStage(){
+void exam(){
+
+    NumberStack *root = generateUniqueNumber( QuestionInExam );
+    NumberStack *tempRoot;
+    tempRoot = root;
+
+    Question question;
+    Exam exam;
+
+    int idx = 0, finalScore = 0, badQuestion = 0;
+    for(; idx < QuestionInExam; idx++ )
+    {
+        question = readQuestionFromFile(QuestionFileName, popStack(&root));
+
+        string answer;
+        bool goToNext = false;
+
+        system("cls");
+        cout << "Question number " << (idx+1)<<"/"<<QuestionInExam <<"\n";
+
+        displayQuestion(question);
+
+        if( idx < 2 )
+        {
+            cout << "TIP: If you do not know how to use this program, type 'help' in to the answer to get more information!\n";
+        }
+
+        do
+        {
+            cout << "Your answer: ";
+            cin.sync();
+            getline(cin, answer);
+            answer = toLowerCase(answer);
+
+            if(answer.at(0) == 'a' || answer.at(0) == 'b' || answer.at(0) == 'c')
+            {
+                goToNext = true;
+            }
+            else if(!answer.compare("exit"))
+            {
+                idx = QuestionInExam+1;
+                break;
+            }
+            else if(!answer.compare("help"))
+            {
+                cout << "1) Type letter 'a' if you want choose answer a) and letter `b` if answer b).\n2) If you want to exit current exam and lose your score type 'exit' in to answer\n";
+            }
+            else
+            {
+                cout << "Incorrect answer! Type 'help' for more information!\n";
+            }
+
+            if(goToNext)
+            {
+                if(answer.at(0) != question.correctAnswer)
+                    badQuestion++;
+            }
+
+        }
+        while( !goToNext );
+    }
+    finalScore = QuestionInExam - badQuestion;
+
+    if(idx == QuestionInExam){
+        system("cls");
+
+        if(currentUser.topScore < finalScore){
+             currentUser.topScore = finalScore;
+        }
+
+        exam.totalScore = finalScore;
+
+        currentUser.examCnt++;
+
+        stringstream ss;
+        ss << currentUser.userName << "-" << currentUser.examCnt;
+
+        exam.nextExamID = currentUser.lastExamID;
+        string line;
+        ss >> line;
+        currentUser.lastExamID = line;
+        exam.examID = line;
+
+        saveExam(exam);
+        updateUser(currentUser);
+
+        cout << "Congratulations! your final score is " << finalScore << "/" << QuestionInExam;
+        cout << "\nPress any key to continue...";
+        getch();
+    }
+
+    root = tempRoot;
+
+    clearStack(&root);
+
+
+}
+
+void examDetaiStage(){
+
+
+
+
+}
+
+void preExamStage(){
 
     system("cls");
     cout << "Welcome " <<currentUser.userName << "! into exam part!\n";
@@ -74,7 +179,7 @@ void examStage(){
            do{
             s = getch();
             if(s == 13){
-                //exam;
+                exam();
                 break;
             }
            }while(s != 27);
@@ -91,7 +196,7 @@ void examStage(){
            do{
             s = getch();
             if(s == 13){
-                //exam;
+                exam();
                 break;
             }
            }while(s != 27);
@@ -166,78 +271,3 @@ void  createUserStage()
         getch();
     }
 }
-
-void quickExamStage()
-{
-    NumberStack *root = generateUniqueNumber( QuestionInExam );
-    NumberStack *tempRoot;
-    tempRoot = root;
-
-    Question question;
-
-    int idx = 0, finalScore = 0, badQuestion = 0;
-    for(; idx < QuestionInExam; idx++ )
-    {
-        question = readQuestionFromFile(QuestionFileName, popStack(&root));
-
-        string answer;
-        bool goToNext = false;
-
-        system("cls");
-        cout << "Question number " << (idx+1)<<"/"<<QuestionInExam <<"\n";
-
-        displayQuestion(question);
-
-        if( idx < 2 )
-        {
-            cout << "TIP: If you do not know how to use this program, type 'help' in to the answer to get more information!\n";
-        }
-
-        do
-        {
-            cout << "Your answer: ";
-            cin.sync();
-            getline(cin, answer);
-            answer = toLowerCase(answer);
-
-            if(answer.at(0) == 'a' || answer.at(0) == 'b' || answer.at(0) == 'c')
-            {
-                goToNext = true;
-            }
-            else if(!answer.compare("exit"))
-            {
-                idx = QuestionInExam+1;
-                break;
-            }
-            else if(!answer.compare("help"))
-            {
-                cout << "1) Type letter 'a' if you want choose answer a) and letter `b` if answer b).\n2) If you want to exit current exam and lose your score type 'exit' in to answer\n";
-            }
-            else
-            {
-                cout << "Incorrect answer! Type 'help' for more information!\n";
-            }
-
-            if(goToNext)
-            {
-                if(answer.at(0) != question.correctAnswer)
-                    badQuestion++;
-            }
-
-        }
-        while( !goToNext );
-    }
-    finalScore = QuestionInExam - badQuestion;
-
-    if(idx == QuestionInExam){
-        system("cls");
-        cout << "Congratulations! your final score is " << finalScore << "/" << QuestionInExam;
-        cout << "\nPress any key to continue...";
-        getch();
-    }
-
-    root = tempRoot;
-
-    clearStack(&root);
-}
-
