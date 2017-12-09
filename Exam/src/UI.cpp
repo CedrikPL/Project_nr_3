@@ -159,8 +159,20 @@ void exam(){
 
 void examDetaiStage(){
 
+    system("cls");
 
+    Exam exam;
+    string currStack = currentUser.lastExamID;
+    for(int i = 0; i < currentUser.examCnt; i++){
+        exam = loadExam(currStack);
 
+        cout << "Exam: " << currentUser.examCnt - i << " score: " << exam.totalScore << "\n";
+
+        currStack = exam.nextExamID;
+    }
+
+    cout << "\nPress any key to continue...";
+    getch();
 
 }
 
