@@ -17,6 +17,7 @@ struct User{
     string userName;
     string lastExamID;
     int examCnt;
+    int topScore;
 };
 
 User createUser(string userName);

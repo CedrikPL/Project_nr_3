@@ -15,6 +15,10 @@ void loginStage();
 
 void createUserStage();
 
+void quickExamStage();
+
 void examStage();
+
+void logoutStage();
 
 #endif // UI_H

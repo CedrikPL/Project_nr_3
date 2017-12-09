@@ -6,6 +6,7 @@ User createUser(string userName)
 
     u.userName = userName;
     u.examCnt = 0;
+    u.topScore = 0;
     u.lastExamID = userName;
 
     ofstream of;
@@ -14,6 +15,7 @@ User createUser(string userName)
 
         of << u.userName << "\n";
         of << u.examCnt << "\n";
+        of << u.topScore << "\n";
         of << u.lastExamID << "\n";
 
     }else cout << "Unable to open file: "<<UserFileName;
@@ -37,6 +39,8 @@ User userExist(string userName){
                 u.userName = line;
                 getline (myfile,line);
                 u.examCnt = atoi(line.c_str());
+                getline (myfile,line);
+                u.topScore = atoi(line.c_str());
                 getline (myfile,line);
                 u.lastExamID = line;
                 break;

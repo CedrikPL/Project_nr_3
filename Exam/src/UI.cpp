@@ -23,10 +23,10 @@ void mainScreen()
             switch(s)
             {
             case '1':
-
+                logoutStage();
                 break;
             case '2':
-
+                examStage();
                 break;
             case '3':
 
@@ -48,7 +48,7 @@ void mainScreen()
                 createUserStage();
                 break;
             case '3':
-                examStage();
+                quickExamStage();
                 break;
             }
 
@@ -57,6 +57,55 @@ void mainScreen()
 
     }
     while(s != '4');
+}
+
+void examStage(){
+
+    system("cls");
+    cout << "Welcome " <<currentUser.userName << "! into exam part!\n";
+    if(currentUser.examCnt == 0){
+        cout << "You have not taken any exams yet! Do you want to do it now?(Y/N): ";
+        char s;
+        cin >> s;
+        s = tolower(s);
+        if( s == 'y')
+        {
+           cout << "Press 'Enter' to begin exam or 'Escape' to discard decision and go back to main menu!";
+           do{
+            s = getch();
+            if(s == 13){
+                //exam;
+                break;
+            }
+           }while(s != 27);
+        }
+    }else{
+        cout << "You have already entered " << currentUser.examCnt << " exams and your best result is " << currentUser.topScore<< "/" <<QuestionInExam<< ".\n(To see more information about your exams go back to the main menu and select the 'Detail' sections)\n";
+        cout << "Do you want to take the next exam? (Y/N): ";
+        char s;
+        cin >> s;
+        s = tolower(s);
+        if( s == 'y')
+        {
+           cout << "Press 'Enter' to begin exam or 'Escape' to discard decision and go back to main menu!";
+           do{
+            s = getch();
+            if(s == 13){
+                //exam;
+                break;
+            }
+           }while(s != 27);
+        }
+    }
+}
+
+void logoutStage(){
+    User u;
+    u.userName = undefinedUser;
+    currentUser = u;
+
+    cout << "Logout successfully!\nPress any key to continue...";
+    getch();
 }
 
 void loginStage()
@@ -77,7 +126,7 @@ void loginStage()
         if( s == 'y')
         {
             currentUser = createUser(userName);
-            cout << "User " << userName << " created successfully!\n Press any key to continue...";
+            cout << "User " << userName << " created and auto login successfully!\n Press any key to continue...";
             getch();
         }
     }
@@ -118,7 +167,7 @@ void  createUserStage()
     }
 }
 
-void examStage()
+void quickExamStage()
 {
     NumberStack *root = generateUniqueNumber( QuestionInExam );
     NumberStack *tempRoot;
@@ -157,7 +206,7 @@ void examStage()
             }
             else if(!answer.compare("exit"))
             {
-                idx = QuestionInExam;
+                idx = QuestionInExam+1;
                 break;
             }
             else if(!answer.compare("help"))
@@ -178,8 +227,14 @@ void examStage()
         }
         while( !goToNext );
     }
-
     finalScore = QuestionInExam - badQuestion;
+
+    if(idx == QuestionInExam){
+        system("cls");
+        cout << "Congratulations! your final score is " << finalScore << "/" << QuestionInExam;
+        cout << "\nPress any key to continue...";
+        getch();
+    }
 
     root = tempRoot;
 
