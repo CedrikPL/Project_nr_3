@@ -65,7 +65,7 @@ void exam()
         bool goToNext = false;
 
         system("cls");
-        cout << "Question number " << (idx+1)<<"/"<<QuestionInExam <<"\n";
+        cout << "Question number " << (idx+1)<<"/"<<QuestionInExam <<"\n\n";
 
         displayQuestion(question);
 
@@ -177,6 +177,10 @@ void examDetaiStage()
 
     Exam exam;
     string currStack = currentUser.lastExamID;
+    if(currentUser.examCnt != 0){
+
+    cout << "Total number of exam: " << currentUser.examCnt << "\n\n";
+
     for(int i = 0; i < currentUser.examCnt; i++)
     {
         exam = loadExam(currStack);
@@ -187,9 +191,12 @@ void examDetaiStage()
             cout << "\nWarning!: Data corruption occurred in "<<ExamFileName<<" file. Exam data lost!\n";
             break;
         }
-        cout << "Exam: " << currentUser.examCnt - i << " score: " << exam.totalScore << "\nAt: " << exam.examDate.dd <<"/" << exam.examDate.mm << "/" << exam.examDate.rrrr << " , " << exam.examDate.h<<":"<<exam.examDate.m<<":"<<exam.examDate.h<<"\n";
+        cout << "Exam number: " << currentUser.examCnt - i << "\nExam score: " << exam.totalScore <<"/" << QuestionInExam << "\n"<<formatExamData(exam)<<"\n\n";
 
         currStack = exam.nextExamID;
+    }
+    }else{
+        cout << "You have not taken any exams yet! Go back into main menu and select 'Exam'.";
     }
 
     waitKey();
@@ -208,7 +215,9 @@ void preExamStage()
     }
     else
     {
-        cout << "You have already entered " << currentUser.examCnt << " exams and your best result is " << currentUser.topScore<< "/" <<QuestionInExam<< ".\n(To see more information about your exams go back to the main menu and select the 'Detail' sections)\n";
+        Exam exam = loadExam(currentUser.lastExamID);
+        cout << "You have already entered " << currentUser.examCnt << " exams and your best result is " << currentUser.topScore<< "/" <<QuestionInExam<< ".\n\nLast exam was at: " << formatExamData(exam)<<" witch score: " << exam.totalScore << "/" << QuestionInExam<<"\n\n";
+        cout << "(To see more information about your exams go back to the main menu and select the 'Detail' sections)\n\n";
         cout << "Do you want to take the next exam?(Y/N): ";
         examConfirm();
     }
@@ -232,9 +241,13 @@ void loginStage()
 {
     system("cls");
     string userName;
-    cout << "To start using program, type your 'username' for which you want to take the exam.\nEnter your username: ";
-    cin.sync();
-    getline(cin, userName);
+    cout << "To start using program, type your 'username' for which you want to take the exam.\n";
+
+    do{
+        cout << "Enter your username: ";
+        cin.sync();
+        getline(cin, userName);
+    }while(userName.length() == 0);
 
     User user = userExist(userName);
     if(isUserNULL(user))
@@ -263,9 +276,14 @@ void  createUserStage()
 {
     system("cls");
     string userName;
-    cout << "To create user and start using program, type your 'username' for which you want to take the exam.\nEnter your username: ";
-    cin.sync();
-    getline(cin, userName);
+    cout << "To create user and start using program, type your 'username' for which you want to take the exam.\n";
+
+    do{
+        cout << "Enter your username: ";
+        cin.sync();
+        getline(cin, userName);
+    }while(userName.length() == 0);
+
 
     User user = userExist(userName);
     if(isUserNULL(user))

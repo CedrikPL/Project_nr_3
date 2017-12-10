@@ -183,3 +183,11 @@ void waitKey(){
     cout << "\nPress any key to continue...";
     getch();
 }
+
+string formatExamData(Exam exam){
+    stringstream ss;
+    ss << "At: " << exam.examDate.dd <<"/" << exam.examDate.mm << "/" << exam.examDate.rrrr << "-" << exam.examDate.h<<":"<<exam.examDate.m<<":"<<exam.examDate.h;
+    string line;
+    line = ss.str();
+    return line;
+}
