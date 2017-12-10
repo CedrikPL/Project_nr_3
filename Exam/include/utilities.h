@@ -22,6 +22,8 @@ string toLowerCase(string text);
 
 bool isUserNULL(User u);
 
+bool isQuestionFileExist(const char* file);
+
 void examConfirm();
 
 void waitKey();

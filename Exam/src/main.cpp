@@ -1,12 +1,14 @@
 #include "main.h"
 
-#include "utilities.h"
-
 int main()
 {
     srand( time(0));
 
-    mainScreen();
+    if(isQuestionFileExist(QuestionFileName)){
+        mainScreen();
+    }else{
+        cout << "Fatal error! Question file don't exist!";
+    }
 
     return 0;
 }

@@ -40,7 +40,7 @@ User createUser(string userName)
         of << u.topScore << "\n";
         of << u.lastExamID << "\n";
     }
-    else cout << "Unable to open file: "<<UserFileName;
+    else cout << "\nWarning!: Data corruption occurred in "<<UserFileName<<" file. All user data lost!\n";
 
     of.close();
 
@@ -73,7 +73,7 @@ User userExist(string userName)
         }
 
     }
-    else cout << "Unable to open file: "<<UserFileName;
+    else cout << "\nWarning!: Data corruption occurred in "<<UserFileName<<" file. All user data lost!\n";
 
     myfile.close();
 

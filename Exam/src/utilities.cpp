@@ -151,6 +151,11 @@ bool isUserNULL(User u)
     return u.userName.at(0) == undefinedUser ? true : false;
 }
 
+bool isQuestionFileExist(const char* file){
+    ifstream myfile(file, ios::in | ios::binary);
+    return myfile.is_open() ? true : false;
+}
+
 void examConfirm()
 {
     char s;

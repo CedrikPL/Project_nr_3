@@ -181,6 +181,12 @@ void examDetaiStage()
     {
         exam = loadExam(currStack);
 
+        if(exam.examID.at(0) == '~')
+            break;
+        else if(exam.examDate.rrrr == 0){
+            cout << "\nWarning!: Data corruption occurred in "<<ExamFileName<<" file. Exam data lost!\n";
+            break;
+        }
         cout << "Exam: " << currentUser.examCnt - i << " score: " << exam.totalScore << "\nAt: " << exam.examDate.dd <<"/" << exam.examDate.mm << "/" << exam.examDate.rrrr << " , " << exam.examDate.h<<":"<<exam.examDate.m<<":"<<exam.examDate.h<<"\n";
 
         currStack = exam.nextExamID;

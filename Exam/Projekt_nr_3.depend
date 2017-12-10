@@ -102,7 +102,7 @@
 	<ctime>
 	<stdlib.h>
 
-1512920463 source:f:\@github\uph\project_nr_3\exam\src\ui.cpp
+1512922172 source:f:\@github\uph\project_nr_3\exam\src\ui.cpp
 	"UI.h"
 
 1512919785 f:\@github\uph\project_nr_3\exam\include\ui.h
@@ -115,10 +115,12 @@
 	"utilities.h"
 	"Exam.h"
 
-1512919048 f:\@github\uph\project_nr_3\exam\include\main.h
+1512921763 f:\@github\uph\project_nr_3\exam\include\main.h
 	"UI.h"
+	"utilities.h"
+	"Question.h"
 
-1512918860 f:\@github\uph\project_nr_3\exam\include\utilities.h
+1512921747 f:\@github\uph\project_nr_3\exam\include\utilities.h
 	<locale>
 	"main.h"
 	<iostream>
@@ -128,7 +130,7 @@
 	<cstring>
 	"User.h"
 
-1512919925 source:f:\@github\uph\project_nr_3\exam\src\utilities.cpp
+1512921745 source:f:\@github\uph\project_nr_3\exam\src\utilities.cpp
 	"utilities.h"
 
 1512917264 f:\@github\uph\project_nr_3\exam\include\question.h
@@ -138,14 +140,13 @@
 	<cstring>
 	<stdlib.h>
 
-1512920128 source:f:\@github\uph\project_nr_3\exam\src\main.cpp
+1512921828 source:f:\@github\uph\project_nr_3\exam\src\main.cpp
 	"main.h"
-	"utilities.h"
 
-1512919925 source:f:\@github\uph\project_nr_3\exam\src\question.cpp
+1512921204 source:f:\@github\uph\project_nr_3\exam\src\question.cpp
 	"Question.h"
 
-1512919850 source:f:\@github\uph\project_nr_3\exam\src\user.cpp
+1512921896 source:f:\@github\uph\project_nr_3\exam\src\user.cpp
 	"User.h"
 
 1512919821 f:\@github\uph\project_nr_3\exam\include\user.h
@@ -154,7 +155,7 @@
 	<fstream>
 	<stdlib.h>
 
-1512919023 source:f:\@github\uph\project_nr_3\exam\src\exam.cpp
+1512921944 source:f:\@github\uph\project_nr_3\exam\src\exam.cpp
 	"Exam.h"
 
 1512917264 f:\@github\uph\project_nr_3\exam\include\exam.h

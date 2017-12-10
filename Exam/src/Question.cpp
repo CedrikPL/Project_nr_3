@@ -10,6 +10,7 @@ Question readQuestionFromFile(const char* fileDir, int questionIndex)
     char z;
     char temp[3] = {0};
     int tempIdx = 0, currline = 0;
+    if(myfile.is_open()){
     while(getline (myfile,line))
     {
         currline++;
@@ -50,7 +51,7 @@ Question readQuestionFromFile(const char* fileDir, int questionIndex)
             currline = 0;
         }
     }
-
+    }else cout << "\nWarning!: Data corruption occurred in "<<QuestionFileName<<" file. All question data lost!\n";
     myfile.close();
 
     return q;
