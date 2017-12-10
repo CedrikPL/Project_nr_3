@@ -13,7 +13,7 @@ const char ExamFileName[] = "res/Exam.ex";
 const int QuestionInExam = 20;
 
 struct Date{
-    int d,mm,rrrr;
+    int s,m,h,dd,mm,rrrr;
 };
 
 struct Exam{

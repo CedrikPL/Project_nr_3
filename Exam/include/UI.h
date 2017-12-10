@@ -3,6 +3,7 @@
 
 #include <conio.h>
 #include <sstream>
+#include <ctime>
 
 #include "User.h"
 #include "Question.h"

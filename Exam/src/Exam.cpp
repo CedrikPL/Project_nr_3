@@ -7,6 +7,12 @@ void saveExam(Exam exam)
     if(of.is_open()){
 
         of << exam.examID << "\n";
+        of << exam.examDate.rrrr << "\n";
+        of << exam.examDate.mm << "\n";
+        of << exam.examDate.dd << "\n";
+        of << exam.examDate.h << "\n";
+        of << exam.examDate.m << "\n";
+        of << exam.examDate.s << "\n";
         of << exam.totalScore << "\n";
         of << exam.nextExamID << "\n";
 
@@ -28,6 +34,20 @@ Exam loadExam(string examID)
             if(!line.compare(examID))  // user exist
             {
                 e.examID = line;
+
+                getline (myfile,line);
+                e.examDate.rrrr = atoi(line.c_str());
+                getline (myfile,line);
+                e.examDate.mm = atoi(line.c_str());
+                getline (myfile,line);
+                e.examDate.dd = atoi(line.c_str());
+                 getline (myfile,line);
+                e.examDate.h = atoi(line.c_str());
+                 getline (myfile,line);
+                e.examDate.m = atoi(line.c_str());
+                 getline (myfile,line);
+                e.examDate.s = atoi(line.c_str());
+
                 getline (myfile,line);
                 e.totalScore = atoi(line.c_str());
                 getline (myfile,line);

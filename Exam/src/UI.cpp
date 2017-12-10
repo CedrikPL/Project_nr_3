@@ -68,6 +68,9 @@ void exam(){
     Question question;
     Exam exam;
 
+    //Time
+    time_t timeNow = time(0);
+
     int idx = 0, finalScore = 0, badQuestion = 0;
     for(; idx < QuestionInExam; idx++ )
     {
@@ -142,6 +145,14 @@ void exam(){
         currentUser.lastExamID = line;
         exam.examID = line;
 
+        tm *ltm = localtime(&timeNow);
+        exam.examDate.s = (1 + ltm->tm_sec);
+        exam.examDate.m = (1 + ltm->tm_min);
+        exam.examDate.h = (1 + ltm->tm_hour);
+        exam.examDate.dd = (ltm->tm_mday);
+        exam.examDate.mm = (1 + ltm->tm_mon);
+        exam.examDate.rrrr = (1900 + ltm->tm_year);
+
         saveExam(exam);
         updateUser(currentUser);
 
@@ -166,7 +177,7 @@ void examDetaiStage(){
     for(int i = 0; i < currentUser.examCnt; i++){
         exam = loadExam(currStack);
 
-        cout << "Exam: " << currentUser.examCnt - i << " score: " << exam.totalScore << "\n";
+        cout << "Exam: " << currentUser.examCnt - i << " score: " << exam.totalScore << "\nAt: " << exam.examDate.dd <<"/" << exam.examDate.mm << "/" << exam.examDate.rrrr << " , " << exam.examDate.h<<":"<<exam.examDate.m<<":"<<exam.examDate.h<<"\n";
 
         currStack = exam.nextExamID;
     }
@@ -220,6 +231,8 @@ void logoutStage(){
     User u;
     u.userName = undefinedUser;
     currentUser = u;
+
+    system("cls");
 
     cout << "Logout successfully!\nPress any key to continue...";
     getch();
