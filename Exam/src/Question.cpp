@@ -4,8 +4,7 @@ Question readQuestionFromFile(const char* fileDir, int questionIndex)
 {
     Question q;
 
-
-    ifstream myfile(fileDir,  ios::in|ios::binary);
+    ifstream myfile(fileDir, ios::in | ios::binary);
     string line;
     int questionCurrIdx;
     char z;
@@ -27,8 +26,6 @@ Question readQuestionFromFile(const char* fileDir, int questionIndex)
                     break;
             }
 
-
-
             questionCurrIdx = atoi(temp);
 
             if(questionCurrIdx == questionIndex)
@@ -41,18 +38,7 @@ Question readQuestionFromFile(const char* fileDir, int questionIndex)
                     q.questionAnswers[j] = line;
                 }
                 getline (myfile,line);
-                switch(line.at(0)){
-                case '1':
-                    q.correctAnswer = 'a';
-                    break;
-                case '2':
-                      q.correctAnswer = 'b';
-                    break;
-                case '3':
-                      q.correctAnswer = 'c';
-                    break;
-                }
-
+                q.correctAnswer = line.at(0);
                 break;
             }
 

@@ -18,13 +18,11 @@ void saveExam(Exam exam)
 
     }else cout << "Unable to open file: "<<ExamFileName;
     of.close();
-
 }
 
 Exam loadExam(string examID)
 {
     Exam e;
-
     string line;
     ifstream myfile(ExamFileName);
     if (myfile.is_open())
@@ -59,7 +57,5 @@ Exam loadExam(string examID)
     }
     else cout << "Unable to open file: "<<ExamFileName;
     myfile.close();
-
-
     return e;
 }

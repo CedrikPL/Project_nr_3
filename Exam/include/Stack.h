@@ -22,7 +22,6 @@ int popStack(NumberStack **root);
 
 void clearStack(NumberStack **root);
 
-
 NumberStack* generateUniqueNumber(int n);
 
 #endif

@@ -2,199 +2,199 @@
 a) am 
 b) have
 c) do
-a
+1
 2. This is my sister ___ name is Helen.
 a) His 
 b) Her 
 c) She
-b
+2
 3. I like his new bike but ___ is nice too.
 a) my 
 b) me 
 c) mine
-c
+3
 4. The match starts ___ four o'clock.
 a) in 
 b) at 
 c) on
-b
+2
 5. I was born ___ 10th March.
 a) on 
 b) in 
 c) at
-a
+1
 6. My mum ___ got two sisters and one brother.
 a) have
 b) has 
 c) are
-b
+2
 7. Can you ___ a horse?
 a)ride 
 b) rides
 c) riding
-a
+1
 8. He always ___ to school. It's not very far.
 a) walk 
 b) walking 
 c) walks
-c
+3
 9. What ___ at the moment?
 a) you doing 
 b) you do 
 c) are you doing
-c
+3
 10. What are you ___ buy Mum for her birthday?
 a) going 
 b) going to 
 c) go to
-b
+2
 11. Why don't we ___ swimming this afternoon?
 a) go 
 b) going 
 c) going to
-a
+1
 12. What about ___ a barbecue?
 a) to have 
 b) having 
 c) have
-b
+2
 13. I love ___ chocolate.
 a) eat 
 b) eating 
 c) eaten
-b
+2
 14. My ___ house is a bit spooky.
 a) grandparents 
 b) grandparents' 
 c) grandparents's
-b
+2
 15. There's still ___ Coca Cola left.
 a) a little 
 b) a few 
 c) little
-a
+1
 16. I love Brad Pitt. He's ___ actor in the world.
 a) goodest 
 b) better 
 c) the best
-c
+3
 17. The roads are dangerous. You must be ___.
 a) careful 
 b) carefully 
 c) carefull
-a
+1
 18. I ___ you an e-mail yesterday.
 a) send 
 b) sended 
 c) sent
-c
+3
 19. My mother ___ dinner yet.
 a) didn't cook 
 b) doesn't cook 
 c) hasn't cooked
-c
+3
 20. If it ___, I'll take an umbrella.
 a) rain 
 b) will rain 
 c) rains
-c
+3
 21. Robert, could you ___ the garden, please? It's very dry.
 a) cut 
 b) plant 
 c) water
-c
+3
 22. I went to the ___ to get some meat for dinner.
  a) baker's 
  b) butcher's 
  c) greengrocer's
-b
+2
 23. My dog always ___ at strangers.
 a) shouts 
 b) barks 
 c) coughs
-b
+2
 24. I've just lost my ___! I had all money in it.
 a) watch 
 b) wallet 
 c) necklace
-b
+2
 25. My job is very interesting. I ___ robots.
 a) design 
 b) earn 
 c) communicate
-a
+1
 26. There are too many cars in the city and the ___ is terrible.
 a) polution 
 b) pollution 
 c) population
-b
+2
 27. I don't like talking to him. He's often ___.
 a) polite 
 b) nice 
 c) rude
-c
+3
 28. Mary came ___ at 9 o'clock yesterday.
 a) house 
 b) home 
 c) school
-b
+2
 29. I usually ___ homework after school.
 a) do 
 b) make 
 c) play
-a
+1
 30. Our PE teacher wants us to wear ___ when we play soccer.
 a) clothes
 b) dresses 
 c) tracksuits
-c
+3
 31. My mother's sister is my ___.
 a) auntie 
 b) uncle
 c) granny
-a
+1
 32. Kate's friend Helga lives in ___.
 a) Deutschland 
 b) Germany 
 c) German
-b
+2
 33. If you want to be a good student, you should ___ to your teacher.
 a) hear 
 b) see 
 c) listen
-c
+3
 34. I'd ___ to be a fire-fighter.
 a) want 
 b) like 
 c) have
-b
+2
 35. Shane is my elder brother. He's 175 cm ___.
 a) high 
 b) tall 
 c) long
-b
+2
 36. Complete the family of words: earthquake, flood, fire, ___.
 a) drought 
 b) moon 
 c) forest
-a
+1
 37. "Right" isn't the opposite of "___" .
 a) left 
 b) wrong 
 c) straight
-c
+3
 38. My teacher is very ___ with me because I'm always late.
 a) pleased 
 b) angry 
 c) hungry
-b
+2
 39. "Where's Paul?" "He's at the supermarket. He ___ the shopping."
 a) making 
 b) is doing 
 c) is making
-b
+2
 40. It's very dark. Can you ___ the light, please?
 a) turn on 
 b) turn off 
 c) pull on
-a
+1

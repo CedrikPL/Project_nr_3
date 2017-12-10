@@ -76,7 +76,6 @@ std::string castToPL( string * text )
 
 void generateQuestionbinaryFile(const char* fileDir)
 {
-
     Question q;
     int i = 0;
     string line;
@@ -103,11 +102,20 @@ void generateQuestionbinaryFile(const char* fileDir)
                 q.questionAnswers[2] = line;
                 break;
             case 5:
-                q.correctAnswer = line.at(0);
+                switch(line.at(0)){
+                case '1':
+                    q.correctAnswer = 'a';
+                    break;
+                case '2':
+                      q.correctAnswer = 'b';
+                    break;
+                case '3':
+                      q.correctAnswer = 'c';
+                    break;
+                }
                 break;
             };
-            if(i == 5)
-            {
+            if(i == 5)            {
 
                 of << q.questionText << "\n";
                 for(int j = 0; j < 3; j++)
@@ -136,4 +144,37 @@ string toLowerCase(string text)
         i++;
     }
     return text;
+}
+
+bool isUserNULL(User u)
+{
+    return u.userName.at(0) == undefinedUser ? true : false;
+}
+
+void examConfirm()
+{
+    char s;
+    cin >> s;
+    s = tolower(s);
+    if( s == 'y')
+    {
+        cout << "Press 'Enter' to begin exam or 'Escape' to discard decision and go back to main menu!";
+        do
+        {
+            s = getch();
+            if(s == 13)
+            {
+                exam();
+                break;
+            }
+        }
+        while(s != 27);
+    }
+
+
+}
+
+void waitKey(){
+    cout << "\nPress any key to continue...";
+    getch();
 }

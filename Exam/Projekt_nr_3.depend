@@ -94,18 +94,18 @@
 	"UI.h"
 	"main.h"
 
-1512833523 source:f:\@github\uph\project_nr_3\exam\src\stack.cpp
+1512919740 source:f:\@github\uph\project_nr_3\exam\src\stack.cpp
 	"Stack.h"
 
-1512833523 f:\@github\uph\project_nr_3\exam\include\stack.h
+1512919740 f:\@github\uph\project_nr_3\exam\include\stack.h
 	<iostream>
 	<ctime>
 	<stdlib.h>
 
-1512916320 source:f:\@github\uph\project_nr_3\exam\src\ui.cpp
+1512920463 source:f:\@github\uph\project_nr_3\exam\src\ui.cpp
 	"UI.h"
 
-1512916015 f:\@github\uph\project_nr_3\exam\include\ui.h
+1512919785 f:\@github\uph\project_nr_3\exam\include\ui.h
 	<conio.h>
 	<sstream>
 	<ctime>
@@ -115,19 +115,10 @@
 	"utilities.h"
 	"Exam.h"
 
-1512845008 f:\@github\uph\project_nr_3\exam\include\main.h
-	<string>
-	<ctime>
-	<stdlib.h>
-	<stdio.h>
-	"utilities.h"
+1512919048 f:\@github\uph\project_nr_3\exam\include\main.h
 	"UI.h"
-	"Stack.h"
-	"Question.h"
-	"User.h"
-	"Exam.h"
 
-1512838522 f:\@github\uph\project_nr_3\exam\include\utilities.h
+1512918860 f:\@github\uph\project_nr_3\exam\include\utilities.h
 	<locale>
 	"main.h"
 	<iostream>
@@ -135,37 +126,38 @@
 	<string>
 	<stdlib.h>
 	<cstring>
+	"User.h"
 
-1512842974 source:f:\@github\uph\project_nr_3\exam\src\utilities.cpp
+1512919925 source:f:\@github\uph\project_nr_3\exam\src\utilities.cpp
 	"utilities.h"
 
-1512834448 f:\@github\uph\project_nr_3\exam\include\question.h
+1512917264 f:\@github\uph\project_nr_3\exam\include\question.h
 	<iostream>
 	<fstream>
 	<cmath>
 	<cstring>
 	<stdlib.h>
 
-1512845212 source:f:\@github\uph\project_nr_3\exam\src\main.cpp
+1512920128 source:f:\@github\uph\project_nr_3\exam\src\main.cpp
 	"main.h"
+	"utilities.h"
 
-1512839515 source:f:\@github\uph\project_nr_3\exam\src\question.cpp
+1512919925 source:f:\@github\uph\project_nr_3\exam\src\question.cpp
 	"Question.h"
 
-1512855290 source:f:\@github\uph\project_nr_3\exam\src\user.cpp
+1512919850 source:f:\@github\uph\project_nr_3\exam\src\user.cpp
 	"User.h"
 
-1512854080 f:\@github\uph\project_nr_3\exam\include\user.h
+1512919821 f:\@github\uph\project_nr_3\exam\include\user.h
 	<string>
 	<iostream>
 	<fstream>
 	<stdlib.h>
-	<sstream>
 
-1512916463 source:f:\@github\uph\project_nr_3\exam\src\exam.cpp
+1512919023 source:f:\@github\uph\project_nr_3\exam\src\exam.cpp
 	"Exam.h"
 
-1512916295 f:\@github\uph\project_nr_3\exam\include\exam.h
+1512917264 f:\@github\uph\project_nr_3\exam\include\exam.h
 	<string>
 	<iostream>
 	<fstream>

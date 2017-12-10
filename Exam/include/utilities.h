@@ -10,6 +10,7 @@
 #include <string>
 #include <stdlib.h>
 #include <cstring>
+#include "User.h"
 
 using namespace std;
 
@@ -18,5 +19,11 @@ std::string castToPL( string * text );
 void generateQuestionbinaryFile(const char* fileDir);
 
 string toLowerCase(string text);
+
+bool isUserNULL(User u);
+
+void examConfirm();
+
+void waitKey();
 
 #endif
