@@ -34,12 +34,18 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="include/Exam.h" />
+		<Unit filename="include/Question.h" />
 		<Unit filename="include/Stack.h" />
 		<Unit filename="include/UI.h" />
+		<Unit filename="include/User.h" />
 		<Unit filename="include/main.h" />
 		<Unit filename="include/utilities.h" />
+		<Unit filename="src/Exam.cpp" />
+		<Unit filename="src/Question.cpp" />
 		<Unit filename="src/Stack.cpp" />
 		<Unit filename="src/UI.cpp" />
+		<Unit filename="src/User.cpp" />
 		<Unit filename="src/main.cpp" />
 		<Unit filename="src/utilities.cpp" />
 		<Extensions>

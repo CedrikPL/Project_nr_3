@@ -41,7 +41,18 @@ Question readQuestionFromFile(const char* fileDir, int questionIndex)
                     q.questionAnswers[j] = line;
                 }
                 getline (myfile,line);
-                q.correctAnswer = line.at(0);
+                switch(line.at(0)){
+                case '1':
+                    q.correctAnswer = 'a';
+                    break;
+                case '2':
+                      q.correctAnswer = 'b';
+                    break;
+                case '3':
+                      q.correctAnswer = 'c';
+                    break;
+                }
+
                 break;
             }
 
