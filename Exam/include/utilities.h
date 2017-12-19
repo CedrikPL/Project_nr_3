@@ -13,6 +13,7 @@
 #include <sstream>
 #include "User.h"
 #include "Exam.h"
+#include "Stack.h"
 
 using namespace std;
 

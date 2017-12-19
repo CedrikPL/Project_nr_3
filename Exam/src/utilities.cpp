@@ -77,13 +77,20 @@ std::string castToPL( string * text )
 void generateQuestionbinaryFile(const char* fileDir)
 {
     Question q;
-    int i = 0;
+    int i = 0, stringSize, currentQ = 0, matadataPos = 0, dataPos = 0 ,writedDataSize = 0;
     string line;
     ifstream myfile(fileDir);
     ofstream of;
     of.open (QuestionFileName, ios::out | ios::app | ios::binary);
     if (myfile.is_open())
     {
+        //prepare question file;
+        int buff = 0;
+        for(int g = 0 ; g < QUESTION_IN_FILE; g++){
+            of.write((char*)(&buff), sizeof(buff));
+        }
+        of.seekp(0, of.beg);
+
         while ( getline (myfile,line) )
         {
             i++;
@@ -115,16 +122,28 @@ void generateQuestionbinaryFile(const char* fileDir)
                 }
                 break;
             };
-            if(i == 5)            {
+            if(i == 5){
+                matadataPos = currentQ * sizeof(currentQ);   //pozycja w meta tabeli;
 
-                of << q.questionText << "\n";
+                of.seekp(0, ios_base::beg);
+                of.write((char *)(&currentQ), sizeof(currentQ));
+
+                writedDataSize = writedDataSize + (QUESTION_IN_FILE * sizeof(matadataPos));
+                of.seekp(writedDataSize, ios_base::beg);
+                stringSize = q.questionText.size();
+                of.write((char*)(&stringSize), sizeof(stringSize));
+                of.write(q.questionText.c_str(), (stringSize*sizeof(char)));
                 for(int j = 0; j < 3; j++)
                 {
-                    of << q.questionAnswers[j] << "\n";
+                    stringSize = q.questionAnswers[j].size();
+                    of.write((char*)(&stringSize), sizeof(stringSize));
+                    of.write(q.questionAnswers[j].c_str(), (stringSize*sizeof(char)));
                 }
-                of << q.correctAnswer<<"\n";
+                of.write(&q.correctAnswer, sizeof(q.correctAnswer));
+                writedDataSize = writedDataSize + of.tellp();
 
                 i = 0;
+                currentQ++;
             }
         }
         myfile.close();
