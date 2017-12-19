@@ -77,6 +77,16 @@ std::string castToPL( string * text )
 void generateQuestionbinaryFile(const char* fileDir)
 {
     Question q;
+    /*
+        i - index linii
+        stringSize - dlugos lancucha znakow do zapisu
+        currentQ - obecnie przetwzrazne pytanie
+        soSQT, sQT, soQA,sQA, sCA - zmienne pomocnicze zawierajace wielkosc danych w baitach.Nazwa pochodzi od skrotu wartosci ktora reperezentuje. Wymagane przy obliczaniu offsetu w pliku.
+        currentSize - obecny rozmiar pytania w baitach
+        finalMetadataSize - finalny offset pytania zapisywany w tablicy metadata.
+        matadataPos - pozycja elemntu w tablicy metadata
+        writedDataSize - ilosc zapisanych baitow do pliku
+    */
     int i = 0, stringSize, currentQ = 0, soSQT, sQT, soQA,sQA, sCA, currentSize, finalMetadataSize, matadataPos = 0, writedDataSize = 0;
     string line;
     ifstream myfile(fileDir);
@@ -126,50 +136,57 @@ void generateQuestionbinaryFile(const char* fileDir)
             };
             if(i == 5)
             {
+                 //wykonak skok do ostatnio zapisanego pytania
                 of.seekp(writedDataSize, ios::beg);
 
+                //zapisywanie wielkosci tesktu pytania  oraz pobieranie jego wielkosci w baitach
                 stringSize = q.questionText.length();
                 soSQT = sizeof(stringSize);
                 writedDataSize = writedDataSize + soSQT;
                 currentSize = currentSize + soSQT;
                 of.write((char*)(&stringSize), soSQT);
 
+                //zapisywanie tresci pytania oraz pobieranie jego wielkosci w baitach
                 sQT = (stringSize*sizeof(char));
                 writedDataSize = writedDataSize + sQT;
                 currentSize = currentSize + sQT;
                 of.write(q.questionText.c_str(), sQT);
 
+                //zapisywanie tresci odpowedzi
                 for(int j = 0; j < 3; j++)
                 {
                     stringSize = q.questionAnswers[j].length();
 
+                    //zapisywanie wielkosci odpowiedzi oraz pobieranie jego wielkosci w baitach
                     soQA = sizeof(stringSize);
                     writedDataSize = writedDataSize + soQA;
                     currentSize = currentSize + soQA;
                     of.write((char*)(&stringSize),soQA);
 
+                    //zapisywanie odpowiedzi oraz pobieranie jego wielkosci w baitach
                     sQA = (stringSize*sizeof(char));
                     writedDataSize = writedDataSize + sQA;
                     currentSize = currentSize + sQA;
                     of.write(q.questionAnswers[j].c_str(), sQA);
                 }
 
+                //zapisywanie poprawnej odpowedzi oraz pobieranie jej wielkosci w baitach
                 sCA = sizeof(q.correctAnswer);
                 writedDataSize = writedDataSize + sCA;
                 currentSize = currentSize + sCA;
                 of.write(&q.correctAnswer, sCA);
 
+                //obliczanie obecnej pozycji w tabeli metadata opardej o obecne pytanie
                 matadataPos = currentQ * sizeof(currentQ);   //pozycja w meta tabeli;
 
+                //obliczanie finalenej pozycji pytania w pliku
                 finalMetadataSize = writedDataSize-currentSize;
 
+                //zapis  finalenej pozycji pytania w taablicy metadata
                 of.seekp(matadataPos, ios_base::beg);
                 of.write((char *)(&finalMetadataSize), sizeof(writedDataSize));
 
-
-                cout <<currentSize << " , " << matadataPos <<" , " << currentQ<< " , "<<writedDataSize << "\n";
-
-
+                cout <<currentSize << " , " << matadataPos <<" , " << currentQ<< " , "<<writedDataSize << "\n"; //debug out
 
                 i = 0;
                 currentSize = 0;
