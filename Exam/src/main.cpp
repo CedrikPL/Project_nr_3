@@ -14,7 +14,10 @@ int main()
     }
     #else
 
-    generateQuestionbinaryFile("res/qsrc.txt");
+   // generateQuestionbinaryFile("res/qsrc.txt");
+
+
+
 
     #endif
     return 0;

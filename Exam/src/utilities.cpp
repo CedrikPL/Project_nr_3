@@ -77,19 +77,20 @@ std::string castToPL( string * text )
 void generateQuestionbinaryFile(const char* fileDir)
 {
     Question q;
-    int i = 0, stringSize, currentQ = 0, matadataPos = 0, dataPos = 0 ,writedDataSize = 0;
+    int i = 0, stringSize , currentQ = 0 , soSQT, sQT, soQA,sQA, sCA, currentSize , finalMetadataSize , matadataPos = 0, writedDataSize = 0;
     string line;
     ifstream myfile(fileDir);
     ofstream of;
-    of.open (QuestionFileName, ios::out | ios::app | ios::binary);
+    of.open (QuestionFileName, ios::out| ios::binary);
     if (myfile.is_open())
     {
         //prepare question file;
         int buff = 0;
-        for(int g = 0 ; g < QUESTION_IN_FILE; g++){
+        for(int g = 0 ; g < QUESTION_IN_FILE; g++)
+        {
+            writedDataSize = writedDataSize+sizeof(buff);
             of.write((char*)(&buff), sizeof(buff));
         }
-        of.seekp(0, of.beg);
 
         while ( getline (myfile,line) )
         {
@@ -109,38 +110,62 @@ void generateQuestionbinaryFile(const char* fileDir)
                 q.questionAnswers[2] = line;
                 break;
             case 5:
-                switch(line.at(0)){
+                switch(line.at(0))
+                {
                 case '1':
                     q.correctAnswer = 'a';
                     break;
                 case '2':
-                      q.correctAnswer = 'b';
+                    q.correctAnswer = 'b';
                     break;
                 case '3':
-                      q.correctAnswer = 'c';
+                    q.correctAnswer = 'c';
                     break;
                 }
                 break;
             };
-            if(i == 5){
-                matadataPos = currentQ * sizeof(currentQ);   //pozycja w meta tabeli;
+            if(i == 5)
+            {
+                of.seekp(writedDataSize, ios::beg);
 
-                of.seekp(0, ios_base::beg);
-                of.write((char *)(&currentQ), sizeof(currentQ));
-
-                writedDataSize = writedDataSize + (QUESTION_IN_FILE * sizeof(matadataPos));
-                of.seekp(writedDataSize, ios_base::beg);
                 stringSize = q.questionText.size();
-                of.write((char*)(&stringSize), sizeof(stringSize));
-                of.write(q.questionText.c_str(), (stringSize*sizeof(char)));
+                soSQT = sizeof(stringSize);
+                writedDataSize = writedDataSize + soSQT;
+                of.write((char*)(&stringSize), soSQT);
+
+                sQT = (stringSize*sizeof(char));
+                writedDataSize = writedDataSize + sQT;
+                of.write(q.questionText.c_str(), sQT);
+
                 for(int j = 0; j < 3; j++)
                 {
                     stringSize = q.questionAnswers[j].size();
-                    of.write((char*)(&stringSize), sizeof(stringSize));
-                    of.write(q.questionAnswers[j].c_str(), (stringSize*sizeof(char)));
+
+                    soQA = sizeof(stringSize);
+                    writedDataSize = writedDataSize + soQA;
+                    of.write((char*)(&stringSize),soQA);
+
+                    sQA = (stringSize*sizeof(char));
+                    writedDataSize = writedDataSize + sQA;
+                    of.write(q.questionAnswers[j].c_str(), sQA);
                 }
-                of.write(&q.correctAnswer, sizeof(q.correctAnswer));
-                writedDataSize = writedDataSize + of.tellp();
+
+                sCA = sizeof(q.correctAnswer);
+                writedDataSize = writedDataSize + sCA;
+                of.write(&q.correctAnswer, sCA);
+
+                matadataPos = currentQ * sizeof(currentQ);   //pozycja w meta tabeli;
+
+                currentSize = soSQT + sQT + soQA + sQA + sCA;
+                finalMetadataSize = writedDataSize-currentSize;
+
+                of.seekp(matadataPos, ios_base::beg);
+                of.write((char *)(&finalMetadataSize), sizeof(writedDataSize));
+
+
+                cout <<currentSize << " , " << matadataPos <<" , " << currentQ<< " , "<<writedDataSize << "\n";
+
+
 
                 i = 0;
                 currentQ++;
@@ -170,7 +195,8 @@ bool isUserNULL(User u)
     return u.userName.at(0) == undefinedUser ? true : false;
 }
 
-bool isQuestionFileExist(const char* file){
+bool isQuestionFileExist(const char* file)
+{
     ifstream myfile(file, ios::in | ios::binary);
     return myfile.is_open() ? true : false;
 }
@@ -198,12 +224,14 @@ void examConfirm()
 
 }
 
-void waitKey(){
+void waitKey()
+{
     cout << "\nPress any key to continue...";
     getch();
 }
 
-string formatExamData(Exam exam){
+string formatExamData(Exam exam)
+{
     stringstream ss;
     ss << "At: " << exam.examDate.dd <<"/" << exam.examDate.mm << "/" << exam.examDate.rrrr << "-" << exam.examDate.h<<":"<<exam.examDate.m<<":"<<exam.examDate.h;
     string line;
