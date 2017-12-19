@@ -3,55 +3,51 @@
 Question readQuestionFromFile(const char* fileDir, int questionIndex)
 {
     Question q;
+    int offsetInFile, stringSize = 0;;
 
     ifstream myfile(fileDir, ios::in | ios::binary);
-    string line;
-    int questionCurrIdx;
-    char z;
-    char temp[3] = {0};
-    int tempIdx = 0, currline = 0;
-    if(myfile.is_open()){
-    while(getline (myfile,line))
+    if(myfile.is_open())
     {
-        currline++;
-        if(currline == 1)
+        //oblicz index offsetu w tabeli metadata na podstawie indexu
+        myfile.seekg((questionIndex * (sizeof(int))),ios::beg);
+
+        myfile.read((char*)(&offsetInFile), sizeof(offsetInFile)); //wczytaj offset pytania
+
+        //wykonak skok do odpowiedniego pytania
+        myfile.seekg(offsetInFile,ios::beg);
+        //wczytaj ilosc znakow
+        myfile.read((char*)(&stringSize), sizeof(stringSize));
+
+        //stworz tablice char i wczytaj do niej dane
+        char buff[stringSize];
+        myfile.read((char*)(buff), sizeof(buff));
+
+        //ustal znak  NULL(Konca linii)
+        buff[stringSize] = '\0';
+        string s(buff);
+        q.questionText = s;
+
+        //wszytywanie odpowiedzi
+        for(int i = 0 ; i < 3; i++)
         {
-            while((z = line.at(tempIdx)))
-            {
-                if(z >= 48 && z <= 57)
-                {
-                    temp[tempIdx] = z;
-                    tempIdx++;
-                }
-                else
-                    break;
-            }
+            stringSize = 0;
+             //wczytaj ilosc znakow
+            myfile.read((char*)(&stringSize), sizeof(stringSize));
 
-            questionCurrIdx = atoi(temp);
+             //stworz tablice char i wczytaj do niej dane
+            char b[stringSize];
+            myfile.read((char*)(&b), sizeof(b));
 
-            if(questionCurrIdx == questionIndex)
-            {
-                //load question
-                q.questionText = line;
-                for(int j = 0 ; j < 3; j++)
-                {
-                    getline (myfile,line);
-                    q.questionAnswers[j] = line;
-                }
-                getline (myfile,line);
-                q.correctAnswer = line.at(0);
-                break;
-            }
-
-            tempIdx = 0;
+            //ustal znak  NULL(Konca linii)
+            b[stringSize] = '\0';
+            string s(b);
+            q.questionAnswers[i] = s;
         }
 
-        if(currline == 5)
-        {
-            currline = 0;
-        }
+        //wczytywanie poprawnej odpowiedzi
+        myfile.read((char*)(&q.correctAnswer), sizeof(q.correctAnswer));
     }
-    }else cout << "\nWarning!: Data corruption occurred in "<<QuestionFileName<<" file. All question data lost!\n";
+    else cout << "\nWarning!: Data corruption occurred in "<<QuestionFileName<<" file. All question data lost!\n";
     myfile.close();
 
     return q;
@@ -64,6 +60,6 @@ void displayQuestion(Question q)
     {
         cout << q.questionAnswers[i] << "\n";
     }
-   // cout << q.correctAnswer << "\n";
-   cout << "\n";
+    cout << q.correctAnswer << "\n";
+    cout << "\n";
 }
