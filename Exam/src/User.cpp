@@ -2,7 +2,6 @@
 
 void updateUser(User user)
 {
-
     string line;
     fstream of;
     of.open (UserFileName, ios::out | ios::in | ios::binary);
@@ -36,29 +35,26 @@ User createUser(string userName)
 
     if(of.is_open())
     {
-
         of << u.userName << "\n";
         of << u.examCnt << "\n";
         of << u.topScore << "\n";
         of << u.lastExamID << "\n";
-
     }
-    else cout << "Unable to open file: "<<UserFileName;
+    else cout << "\nWarning!: Data corruption occurred in "<<UserFileName<<" file. All user data lost!\n";
+
     of.close();
-
-
 
     return u;
 }
 
 User userExist(string userName)
 {
-
     User u;
     u.userName = undefinedUser;
 
     string line;
     ifstream myfile(UserFileName);
+
     if (myfile.is_open())
     {
         while ( getline (myfile,line) )
@@ -77,7 +73,8 @@ User userExist(string userName)
         }
 
     }
-    else cout << "Unable to open file: "<<UserFileName;
+    else cout << "\nWarning!: Data corruption occurred in "<<UserFileName<<" file. All user data lost!\n";
+
     myfile.close();
 
     return u;

@@ -16,15 +16,13 @@ void saveExam(Exam exam)
         of << exam.totalScore << "\n";
         of << exam.nextExamID << "\n";
 
-    }else cout << "Unable to open file: "<<ExamFileName;
+    }else cout << "\nWarning!: Data corruption occurred in "<<ExamFileName<<" file. All exam data lost!\n";
     of.close();
-
 }
 
 Exam loadExam(string examID)
 {
     Exam e;
-
     string line;
     ifstream myfile(ExamFileName);
     if (myfile.is_open())
@@ -57,9 +55,7 @@ Exam loadExam(string examID)
         }
 
     }
-    else cout << "Unable to open file: "<<ExamFileName;
+    else {cout << "\nWarning!: Data corruption occurred in "<<ExamFileName<<" file. All exam data lost!\n";e.examID = '~';}
     myfile.close();
-
-
     return e;
 }

@@ -13,7 +13,6 @@ int popStack(NumberStack **root)
     NumberStack *temp=*root;
     *root=(*root)->next;
     return temp->number;
-    // delete temp;
 }
 
 void clearStack(NumberStack **root)
@@ -28,12 +27,12 @@ void clearStack(NumberStack **root)
 
 NumberStack* generateUniqueNumber(int n)
 {
-
     NumberStack *root = NULL, *tempW=NULL;
 
     int i = 0;
     int r;
     bool isUnique = true;
+
     while(i < n)
     {
         r = ( rand() % QUESTION_IN_FILE ) + 1;
@@ -55,7 +54,5 @@ NumberStack* generateUniqueNumber(int n)
             isUnique = true;
         }
     }
-
-   // clearStack(&root);
     return root;
 }

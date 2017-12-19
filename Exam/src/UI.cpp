@@ -8,58 +8,43 @@ void mainScreen()
     currentUser.userName = undefinedUser;
 
     char s;
+    bool isUserNull;
     do
     {
+        isUserNull = isUserNULL(currentUser);
+
         system("cls");
 
-        if(currentUser.userName.at(0) != undefinedUser)
+        if(!isUserNull)
         {
-            toUpperUsername = currentUser.userName;
-            toUpperUsername.at(0) = toupper(toUpperUsername.at(0));
             cout << "Welcome " << toUpperUsername << "! into the English language exam program!\nChoose one of the options below to start.\n\n1 - logout; 2 - Exam; 3 - Detail; 4 - Exit\nSelect option: ";
-            cin.sync();
-            s = getchar();
-
-            switch(s)
-            {
-            case '1':
-                logoutStage();
-                break;
-            case '2':
-                preExamStage();
-                break;
-            case '3':
-                examDetaiStage();
-                break;
-            }
         }
         else
         {
             cout << "Welcome to the English language exam program!\nChoose one of the options below to start.\n\n1 - Login; 2 - Create user; 3 -Quick Exam; 4 - Exit\nSelect option: ";
-            cin.sync();
-            s = getchar();
-
-            switch(s)
-            {
-            case '1':
-                loginStage();
-                break;
-            case '2':
-                createUserStage();
-                break;
-            case '3':
-                exam();
-                break;
-            }
-
         }
-
+        cin.sync();
+        s = getchar();
+        switch(s)
+        {
+        case '1':
+            isUserNull ? loginStage() : logoutStage();
+            break;
+        case '2':
+            isUserNull ? createUserStage() : preExamStage();
+            break;
+        case '3':
+            isUserNull ? exam() : examDetaiStage();
+            break;
+        }
 
     }
     while(s != '4');
 }
 
-void exam(){
+void exam()
+{
+    bool isExit = false;
 
     NumberStack *root = generateUniqueNumber( QuestionInExam );
     NumberStack *tempRoot;
@@ -80,7 +65,7 @@ void exam(){
         bool goToNext = false;
 
         system("cls");
-        cout << "Question number " << (idx+1)<<"/"<<QuestionInExam <<"\n";
+        cout << "Question number " << (idx+1)<<"/"<<QuestionInExam <<"\n\n";
 
         displayQuestion(question);
 
@@ -94,15 +79,20 @@ void exam(){
             cout << "Your answer: ";
             cin.sync();
             getline(cin, answer);
+
+            if(answer.length() == 0)
+                continue;
+
             answer = toLowerCase(answer);
 
-            if(answer.at(0) == 'a' || answer.at(0) == 'b' || answer.at(0) == 'c')
+            if((answer.at(0) == 'a' || answer.at(0) == 'b' || answer.at(0) == 'c') && (answer.length() == 1))
             {
                 goToNext = true;
             }
             else if(!answer.compare("exit"))
             {
-                idx = QuestionInExam+1;
+                idx = QuestionInExam;
+                isExit = true;
                 break;
             }
             else if(!answer.compare("help"))
@@ -125,129 +115,142 @@ void exam(){
     }
     finalScore = QuestionInExam - badQuestion;
 
-    if(idx == QuestionInExam){
-        system("cls");
+    system("cls");
+    if(!isExit)
+    {
+        if(!isUserNULL(currentUser))
+        {
 
-        if(currentUser.topScore < finalScore){
-             currentUser.topScore = finalScore;
+            if(currentUser.topScore < finalScore)
+            {
+                currentUser.topScore = finalScore;
+            }
+
+            exam.totalScore = finalScore;
+
+            currentUser.examCnt++;
+
+            stringstream ss;
+            ss << currentUser.userName << "-" << currentUser.examCnt;
+
+            exam.nextExamID = currentUser.lastExamID;
+
+            string line;
+            ss >> line;
+            currentUser.lastExamID = line;
+            exam.examID = line;
+
+            tm *ltm = localtime(&timeNow);
+            exam.examDate.s = (1 + ltm->tm_sec);
+            exam.examDate.m = (1 + ltm->tm_min);
+            exam.examDate.h = (1 + ltm->tm_hour);
+            exam.examDate.dd = (ltm->tm_mday);
+            exam.examDate.mm = (1 + ltm->tm_mon);
+            exam.examDate.rrrr = (1900 + ltm->tm_year);
+
+            saveExam(exam);
+            updateUser(currentUser);
+
         }
 
-        exam.totalScore = finalScore;
-
-        currentUser.examCnt++;
-
-        stringstream ss;
-        ss << currentUser.userName << "-" << currentUser.examCnt;
-
-        exam.nextExamID = currentUser.lastExamID;
-        string line;
-        ss >> line;
-        currentUser.lastExamID = line;
-        exam.examID = line;
-
-        tm *ltm = localtime(&timeNow);
-        exam.examDate.s = (1 + ltm->tm_sec);
-        exam.examDate.m = (1 + ltm->tm_min);
-        exam.examDate.h = (1 + ltm->tm_hour);
-        exam.examDate.dd = (ltm->tm_mday);
-        exam.examDate.mm = (1 + ltm->tm_mon);
-        exam.examDate.rrrr = (1900 + ltm->tm_year);
-
-        saveExam(exam);
-        updateUser(currentUser);
-
         cout << "Congratulations! your final score is " << finalScore << "/" << QuestionInExam;
-        cout << "\nPress any key to continue...";
-        getch();
+
+    }
+    else
+    {
+        cout << "Exit";
     }
 
     root = tempRoot;
 
     clearStack(&root);
 
+    if(isUserNULL(currentUser))
+        waitKey();
 
 }
 
-void examDetaiStage(){
+void examDetaiStage()
+{
 
     system("cls");
 
     Exam exam;
     string currStack = currentUser.lastExamID;
-    for(int i = 0; i < currentUser.examCnt; i++){
+    if(currentUser.examCnt != 0){
+
+    cout << "Total number of exam: " << currentUser.examCnt << "\n\n";
+
+    for(int i = 0; i < currentUser.examCnt; i++)
+    {
         exam = loadExam(currStack);
 
-        cout << "Exam: " << currentUser.examCnt - i << " score: " << exam.totalScore << "\nAt: " << exam.examDate.dd <<"/" << exam.examDate.mm << "/" << exam.examDate.rrrr << " , " << exam.examDate.h<<":"<<exam.examDate.m<<":"<<exam.examDate.h<<"\n";
+        if(exam.examID.at(0) == '~')
+            break;
+        else if(exam.examDate.rrrr == 0){
+            cout << "\nWarning!: Data corruption occurred in "<<ExamFileName<<" file. Exam data lost!\n";
+            break;
+        }
+        cout << "Exam number: " << currentUser.examCnt - i << "\nExam score: " << exam.totalScore <<"/" << QuestionInExam << "\n"<<formatExamData(exam)<<"\n\n";
 
         currStack = exam.nextExamID;
     }
+    }else{
+        cout << "You have not taken any exams yet! Go back into main menu and select 'Exam'.";
+    }
 
-    cout << "\nPress any key to continue...";
-    getch();
+    waitKey();
 
 }
 
-void preExamStage(){
+void preExamStage()
+{
 
     system("cls");
-    cout << "Welcome " <<currentUser.userName << "! into exam part!\n";
-    if(currentUser.examCnt == 0){
+    cout << "Welcome " << toUpperUsername << "! into exam part!\n";
+    if(currentUser.examCnt == 0)
+    {
         cout << "You have not taken any exams yet! Do you want to do it now?(Y/N): ";
-        char s;
-        cin >> s;
-        s = tolower(s);
-        if( s == 'y')
-        {
-           cout << "Press 'Enter' to begin exam or 'Escape' to discard decision and go back to main menu!";
-           do{
-            s = getch();
-            if(s == 13){
-                exam();
-                break;
-            }
-           }while(s != 27);
-        }
-    }else{
-        cout << "You have already entered " << currentUser.examCnt << " exams and your best result is " << currentUser.topScore<< "/" <<QuestionInExam<< ".\n(To see more information about your exams go back to the main menu and select the 'Detail' sections)\n";
-        cout << "Do you want to take the next exam? (Y/N): ";
-        char s;
-        cin >> s;
-        s = tolower(s);
-        if( s == 'y')
-        {
-           cout << "Press 'Enter' to begin exam or 'Escape' to discard decision and go back to main menu!";
-           do{
-            s = getch();
-            if(s == 13){
-                exam();
-                break;
-            }
-           }while(s != 27);
-        }
+        examConfirm();
     }
+    else
+    {
+        Exam exam = loadExam(currentUser.lastExamID);
+        cout << "You have already entered " << currentUser.examCnt << " exams and your best result is " << currentUser.topScore<< "/" <<QuestionInExam<< ".\n\nLast exam was at: " << formatExamData(exam)<<" witch score: " << exam.totalScore << "/" << QuestionInExam<<"\n\n";
+        cout << "(To see more information about your exams go back to the main menu and select the 'Detail' sections)\n\n";
+        cout << "Do you want to take the next exam?(Y/N): ";
+        examConfirm();
+    }
+
+    waitKey();
 }
 
-void logoutStage(){
+void logoutStage()
+{
     User u;
     u.userName = undefinedUser;
     currentUser = u;
 
     system("cls");
 
-    cout << "Logout successfully!\nPress any key to continue...";
-    getch();
+    cout << "Logout successfully!";
+    waitKey();
 }
 
 void loginStage()
 {
     system("cls");
     string userName;
-    cout << "To start using program, type your 'username' for which you want to take the exam.\nEnter your username: ";
-    cin.sync();
-    getline(cin, userName);
+    cout << "To start using program, type your 'username' for which you want to take the exam.\n";
+
+    do{
+        cout << "Enter your username: ";
+        cin.sync();
+        getline(cin, userName);
+    }while(userName.length() == 0);
 
     User user = userExist(userName);
-    if(user.userName.at(0) == undefinedUser)
+    if(isUserNULL(user))
     {
         char s;
         cout << "User: " << userName << " don't exist! Do you want to create new user? (Y/N): ";
@@ -256,30 +259,34 @@ void loginStage()
         if( s == 'y')
         {
             currentUser = createUser(userName);
-            cout << "User " << userName << " created and auto login successfully!\n Press any key to continue...";
-            getch();
+            cout << "User " << userName << " created and auto login successfully!";
         }
     }
     else
     {
-        userName.at(0) = toupper(userName.at(0));
-        cout << userName <<" user logged successfully!";
         currentUser = user;
-        cout << "\n Press any key to continue...";
-        getch();
+        toUpperUsername = currentUser.userName;
+        toUpperUsername.at(0) = toupper(toUpperUsername.at(0));
+        cout << toUpperUsername <<" user logged successfully!";
     }
+    waitKey();
 }
 
 void  createUserStage()
 {
     system("cls");
     string userName;
-    cout << "To create user and start using program, type your 'username' for which you want to take the exam.\nEnter your username: ";
-    cin.sync();
-    getline(cin, userName);
+    cout << "To create user and start using program, type your 'username' for which you want to take the exam.\n";
+
+    do{
+        cout << "Enter your username: ";
+        cin.sync();
+        getline(cin, userName);
+    }while(userName.length() == 0);
+
 
     User user = userExist(userName);
-    if(user.userName.at(0) == undefinedUser)
+    if(isUserNULL(user))
     {
         char s;
         cout << "User: " << userName << " don't exist! Do you want to create new user? (Y/N): ";
@@ -288,11 +295,13 @@ void  createUserStage()
         if( s == 'y')
         {
             currentUser = createUser(userName);
-            cout << "User " << userName << " created and auto login successfully!\n Press any key to continue...";
-            getch();
+            cout << "User " << userName << " created and auto login successfully!";
         }
-    }else{
-        cout << "User: " << userName << " exist! You can't create user witch same 'username'!\n Press any key to continue...";
-        getch();
     }
+    else
+    {
+        cout << "User: " << userName << " exist! You can't create user witch same 'username'!";
+    }
+
+    waitKey();
 }
