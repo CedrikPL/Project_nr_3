@@ -17,7 +17,8 @@
 				</Compiler>
 			</Target>
 			<Target title="Release">
-				<Option output="bin/Release/Projekt_nr_3" prefix_auto="1" extension_auto="1" />
+				<Option platforms="Windows;" />
+				<Option output="bin/Release/Exam" prefix_auto="1" extension_auto="1" />
 				<Option object_output="obj/Release/" />
 				<Option type="1" />
 				<Option compiler="gcc" />
