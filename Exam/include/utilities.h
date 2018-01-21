@@ -1,14 +1,12 @@
 #ifndef UTILITIES_H_INCLUDED
 #define UTILITIES_H_INCLUDED
 
-#include <locale>
-
 #include "main.h"
-
 #include <iostream>
 #include <fstream>
 #include <string>
 #include <stdlib.h>
+#include <conio.h>
 #include <cstring>
 #include <sstream>
 #include "User.h"
@@ -16,8 +14,6 @@
 #include "Stack.h"
 
 using namespace std;
-
-std::string castToPL( string * text );
 
 void generateQuestionbinaryFile(const char* fileDir);
 

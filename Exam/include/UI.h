@@ -1,10 +1,6 @@
 #ifndef UI_H
 #define UI_H
 
-#include <conio.h>
-#include <sstream>
-#include <ctime>
-
 #include "User.h"
 #include "Question.h"
 #include "Stack.h"

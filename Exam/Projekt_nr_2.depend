@@ -94,21 +94,18 @@
 	"UI.h"
 	"main.h"
 
-1512919740 source:f:\@github\uph\project_nr_3\exam\src\stack.cpp
+1516451772 source:f:\@github\uph\project_nr_3\exam\src\stack.cpp
 	"Stack.h"
 
-1512919740 f:\@github\uph\project_nr_3\exam\include\stack.h
+1516448536 f:\@github\uph\project_nr_3\exam\include\stack.h
 	<iostream>
 	<ctime>
 	<stdlib.h>
 
-1512922172 source:f:\@github\uph\project_nr_3\exam\src\ui.cpp
+1513806780 source:f:\@github\uph\project_nr_3\exam\src\ui.cpp
 	"UI.h"
 
-1512919785 f:\@github\uph\project_nr_3\exam\include\ui.h
-	<conio.h>
-	<sstream>
-	<ctime>
+1516453562 f:\@github\uph\project_nr_3\exam\include\ui.h
 	"User.h"
 	"Question.h"
 	"Stack.h"
@@ -120,17 +117,20 @@
 	"utilities.h"
 	"Question.h"
 
-1512921747 f:\@github\uph\project_nr_3\exam\include\utilities.h
-	<locale>
+1516454546 f:\@github\uph\project_nr_3\exam\include\utilities.h
 	"main.h"
 	<iostream>
 	<fstream>
 	<string>
 	<stdlib.h>
+	<conio.h>
 	<cstring>
+	<sstream>
 	"User.h"
+	"Exam.h"
+	"Stack.h"
 
-1512921745 source:f:\@github\uph\project_nr_3\exam\src\utilities.cpp
+1516545484 source:f:\@github\uph\project_nr_3\exam\src\utilities.cpp
 	"utilities.h"
 
 1512917264 f:\@github\uph\project_nr_3\exam\include\question.h
@@ -140,10 +140,10 @@
 	<cstring>
 	<stdlib.h>
 
-1512921828 source:f:\@github\uph\project_nr_3\exam\src\main.cpp
+1516549689 source:f:\@github\uph\project_nr_3\exam\src\main.cpp
 	"main.h"
 
-1512921204 source:f:\@github\uph\project_nr_3\exam\src\question.cpp
+1516448621 source:f:\@github\uph\project_nr_3\exam\src\question.cpp
 	"Question.h"
 
 1512921896 source:f:\@github\uph\project_nr_3\exam\src\user.cpp

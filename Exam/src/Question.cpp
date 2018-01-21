@@ -60,6 +60,6 @@ void displayQuestion(Question q)
     {
         cout << q.questionAnswers[i] << "\n";
     }
-    cout << q.correctAnswer << "\n";
+    //cout << q.correctAnswer << "\n";
     cout << "\n";
 }

@@ -1,79 +1,5 @@
 #include "utilities.h"
 
-std::string castToPL( string * text )
-{
-    std::string result;
-    char z;
-    unsigned int i;
-    for(i = 0; i < text->size(); i++)
-    {
-        z = text->at(i);
-        switch( z )
-        {
-        case 'π':
-            result += static_cast < char >( 0xa5 );
-            break;
-        case 'Ê':
-            result += static_cast < char >( 0x86 );
-            break;
-        case 'Í':
-            result += static_cast < char >( 0xa9 );
-            break;
-        case '≥':
-            result += static_cast < char >( 0x88 );
-            break;
-        case 'Ò':
-            result += static_cast < char >( 0xe4 );
-            break;
-        case 'Û':
-            result += static_cast < char >( 0xa2 );
-            break;
-        case 'ú':
-            result += static_cast < char >( 0x98 );
-            break;
-        case 'ø':
-            result += static_cast < char >( 0xbe );
-            break;
-        case 'ü':
-            result += static_cast < char >( 0xab );
-            break;
-        case '•':
-            result += static_cast < char >( 0xa4 );
-            break;
-        case '∆':
-            result += static_cast < char >( 0x8f );
-            break;
-        case ' ':
-            result += static_cast < char >( 0xa8 );
-            break;
-        case '£':
-            result += static_cast < char >( 0x9d );
-            break;
-        case '—':
-            result += static_cast < char >( 0xe3 );
-            break;
-        case '”':
-            result += static_cast < char >( 0xe0 );
-            break;
-        case 'å':
-            result += static_cast < char >( 0x97 );
-            break;
-        case 'Ø':
-            result += static_cast < char >( 0xbd );
-            break;
-        case 'è':
-            result += static_cast < char >( 0x8d );
-            break;
-        default:
-            result += z;
-            break;
-        }
-    }
-
-    return result;
-}
-
-
 void generateQuestionbinaryFile(const char* fileDir)
 {
     Question q;
@@ -87,7 +13,7 @@ void generateQuestionbinaryFile(const char* fileDir)
         matadataPos - pozycja elemntu w tablicy metadata
         writedDataSize - ilosc zapisanych baitow do pliku
     */
-    int i = 0, stringSize, currentQ = 0, soSQT, sQT, soQA,sQA, sCA, currentSize, finalMetadataSize, matadataPos = 0, writedDataSize = 0;
+    int i = 0, stringSize, currentQ = 0, soSQT, sQT, soQA,sQA, sCA, currentSize=0, finalMetadataSize, matadataPos = 0, writedDataSize = 0;
     string line;
     ifstream myfile(fileDir);
     ofstream of;

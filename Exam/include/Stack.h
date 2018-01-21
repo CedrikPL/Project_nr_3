@@ -7,7 +7,7 @@
 
 using namespace std;
 
-const int QUESTION_IN_FILE = 40;
+const int QUESTION_IN_FILE = 100;
 
 struct NumberStack{
     int number;

@@ -13,7 +13,7 @@ int main()
     }
     #else
 
-    //generateQuestionbinaryFile("res/qsrc.txt");
+    generateQuestionbinaryFile("res/qsrc.txt");
 
     Question q[QUESTION_IN_FILE];
 
